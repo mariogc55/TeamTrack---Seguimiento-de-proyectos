@@ -8,3 +8,4 @@ router.post('/', userController.guardarUsuario);
 router.get('/', userController.obtenerUsuarios);
 
 module.exports = router;
+
