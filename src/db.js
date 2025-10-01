@@ -1,9 +1,8 @@
 // db.js
 
 const { Pool } = require('pg');
-const config = require('./config'); // Importar la configuración
+const config = require('./config');
 
-// Inicializar el pool usando la configuración centralizada
 const pool = new Pool({
   user: config.db.user,
   host: config.db.host,
@@ -12,7 +11,7 @@ const pool = new Pool({
   port: config.db.port, 
 });
 
-// Prueba de Conexión (opcional, pero buena práctica)
+// prueba conexion
 pool.connect((err, client, release) => {
     if (err) {
         return console.error('❌ Error al conectar con PostgreSQL:', err.stack);
@@ -26,4 +25,5 @@ pool.connect((err, client, release) => {
 module.exports = {
   query: (text, params) => pool.query(text, params),
   pool: pool, // exportamos el pool si se necesita acceso directo
+
 };
