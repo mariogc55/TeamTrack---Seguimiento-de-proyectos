@@ -96,7 +96,7 @@ async function obtenerUsuarios(req, res) {
     }
 }
 
-// Obtener el perfil del usuario logueado (solo su propio perfil)
+// Obtener el perfil del usuario logueado (solo ver perfil propio)
 async function obtenerPerfilUsuario(req, res) {
     try {
         // req.user viene del payload del JWT (id, email, rol)
@@ -125,4 +125,5 @@ module.exports = {
     obtenerUsuarios,
     loginUsuario,
     obtenerPerfilUsuario,
+
 };
