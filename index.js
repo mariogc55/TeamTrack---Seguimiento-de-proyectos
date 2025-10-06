@@ -10,4 +10,3 @@ app.listen(port, ()=> {
     console.log(`Rutas de Usuario disponibles en: http://localhost:${port}/api/users`);
 
 });
-
