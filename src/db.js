@@ -13,9 +13,9 @@ const pool = new Pool({
 
 pool.connect((err, client, release) => {
     if (err) {
-        return console.error('❌ Error al conectar con PostgreSQL:', err.stack);
+        return console.error('Error al conectar con PostgreSQL:', err.stack);
     }
-    console.log('✅ Conexión exitosa a PostgreSQL:', config.db.database);
+    console.log('Conexión exitosa a PostgreSQL:', config.db.database);
     release();
 });
 
@@ -25,4 +25,5 @@ module.exports = {
   pool: pool,
 
 };
+
 
