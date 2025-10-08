@@ -20,9 +20,9 @@ pool.connect((err, client, release) => {
 });
 
 
-// Exportar una función de utilidad para ejecutar queries
 module.exports = {
   query: (text, params) => pool.query(text, params),
-  pool: pool, // exportamos el pool si se necesita acceso directo
+  pool: pool,
 
 };
+
