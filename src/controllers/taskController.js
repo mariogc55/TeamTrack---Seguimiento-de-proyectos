@@ -1,7 +1,6 @@
 // src/controllers/taskController.js
 const taskModel = require('../models/taskModel');
 
-// [POST] Crear nueva tarea (Admin o Líder de proyecto)
 async function postCrearTarea(req, res) {
     const { id_proyecto, titulo, descripcion, fecha_limite, id_asignado_a } = req.body; 
 
@@ -18,7 +17,6 @@ async function postCrearTarea(req, res) {
     }
 }
 
-// [GET] Obtener todas las tareas (Admin)
 async function getTareas(req, res) {
     try {
         const tareas = await taskModel.obtenerTareas();
@@ -29,7 +27,6 @@ async function getTareas(req, res) {
     }
 }
 
-// [GET] Obtener tarea por ID
 async function getTareaPorId(req, res) {
     const { id } = req.params;
     try {
@@ -44,7 +41,6 @@ async function getTareaPorId(req, res) {
     }
 }
 
-// [PUT] Actualizar tarea completa (Admin)
 async function putActualizarTarea(req, res) {
     const { id } = req.params;
     const { titulo, descripcion, fecha_limite, porcentaje_progreso, estado, id_asignado_a } = req.body;
@@ -61,7 +57,6 @@ async function putActualizarTarea(req, res) {
     }
 }
 
-// [PATCH] Actualizar progreso y estado (Miembro o Admin)
 async function patchActualizarProgreso(req, res) {
     const { id } = req.params;
     const { porcentaje_progreso, estado } = req.body;
@@ -83,7 +78,6 @@ async function patchActualizarProgreso(req, res) {
 }
 
 
-// [DELETE] Eliminar tarea (Admin)
 async function deleteTarea(req, res) {
     const { id } = req.params;
     try {
@@ -106,4 +100,5 @@ module.exports = {
     putActualizarTarea,
     patchActualizarProgreso,
     deleteTarea,
+
 };
