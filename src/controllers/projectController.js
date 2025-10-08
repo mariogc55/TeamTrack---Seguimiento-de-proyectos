@@ -1,12 +1,9 @@
 // src/controllers/projectController.js
 const projectModel = require('../models/projectModel');
 
-// [POST] Crear nuevo proyecto
 async function postCrearProyecto(req, res) {
-    // id_lider puede venir del cuerpo o del token JWT (req.user.id) si el creador es el líder
     const { nombre, descripcion, id_lider } = req.body; 
 
-    // Aquí se podría añadir validación, por simplicidad asumimos que los datos son válidos
     if (!nombre || !id_lider) {
         return res.status(400).json({ error: 'Faltan campos obligatorios: nombre e id_lider.' });
     }
@@ -20,7 +17,6 @@ async function postCrearProyecto(req, res) {
     }
 }
 
-// [GET] Obtener todos los proyectos
 async function getProyectos(req, res) {
     try {
         const proyectos = await projectModel.obtenerProyectos();
@@ -31,7 +27,6 @@ async function getProyectos(req, res) {
     }
 }
 
-// [GET] Obtener proyecto por ID
 async function getProyectoPorId(req, res) {
     const { id } = req.params;
     try {
@@ -46,12 +41,10 @@ async function getProyectoPorId(req, res) {
     }
 }
 
-// [PUT] Actualizar proyecto
 async function putActualizarProyecto(req, res) {
     const { id } = req.params;
     const { nombre, descripcion, id_lider } = req.body;
     
-    // Aquí se podría validar si el usuario logueado es el líder o un admin
     try {
         const proyectoActualizado = await projectModel.actualizarProyecto(id, nombre, descripcion, id_lider);
         if (!proyectoActualizado) {
@@ -64,7 +57,6 @@ async function putActualizarProyecto(req, res) {
     }
 }
 
-// [DELETE] Eliminar proyecto
 async function deleteProyecto(req, res) {
     const { id } = req.params;
     try {
@@ -86,4 +78,5 @@ module.exports = {
     getProyectoPorId,
     putActualizarProyecto,
     deleteProyecto,
+
 };
