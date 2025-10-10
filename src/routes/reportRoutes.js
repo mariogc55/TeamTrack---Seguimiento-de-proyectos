@@ -4,11 +4,12 @@ const router = express.Router();
 const reportController = require('../controllers/reportController');
 const auth = require('../middlewares/authMiddleware'); 
 
-// GET /api/reports/project/:id - Generar y descargar reporte de un proyecto
+// genera y descarga reporte
 router.get('/project/:id', 
     auth.verificarToken, 
     auth.verificarRol('admin'), 
     reportController.generarReporteProyecto
 );
+
 
 module.exports = router;
