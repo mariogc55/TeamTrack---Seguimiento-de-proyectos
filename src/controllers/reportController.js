@@ -1,44 +1,35 @@
 // src/controllers/reportController.js
-const PDFDocument = require('pdfkit'); // Importar la librería
+const PDFDocument = require('pdfkit');
 const projectModel = require('../models/projectModel');
 const taskModel = require('../models/taskModel');
 
 async function generarReporteProyecto(req, res) {
-    const projectId = req.params.id; // Obtenemos el ID del proyecto de la URL
+    const projectId = req.params.id;
 
     try {
-        // 1. Obtener los datos del Proyecto
         const proyecto = await projectModel.obtenerProyectoPorId(projectId);
         if (!proyecto) {
             return res.status(404).json({ error: 'Proyecto no encontrado' });
         }
 
-        // 2. Obtener todas las Tareas asociadas a ese proyecto
         const tareas = await taskModel.obtenerTareasPorProyecto(projectId);
         
-        // 3. Configurar la respuesta (Headers para descargar el archivo)
         res.setHeader('Content-Type', 'application/pdf');
         res.setHeader('Content-Disposition', `attachment; filename=Reporte_Proyecto_${proyecto.nombre.replace(/\s/g, '_')}.pdf`);
 
-        // 4. Iniciar la generación del PDF
         const doc = new PDFDocument();
 
-        // Tubería (pipe): Conecta el documento PDF al stream de respuesta HTTP
         doc.pipe(res);
 
-        // --- Contenido del PDF ---
-
-        // Título del Reporte
+        //contenido reporte
         doc.fontSize(20).text(`Reporte de Proyecto: ${proyecto.nombre}`, { align: 'center' });
         doc.moveDown(0.5);
         
-        // Detalles del Proyecto
         doc.fontSize(12).text(`Líder: ${proyecto.nombre_lider}`);
         doc.text(`Descripción: ${proyecto.descripcion}`);
         doc.text(`Creación: ${new Date(proyecto.fecha_creacion).toLocaleDateString()}`);
         doc.moveDown(1);
         
-        // Sección de Tareas
         doc.fontSize(16).text('Tareas Asignadas:', { underline: true });
         doc.moveDown(0.5);
 
@@ -55,7 +46,6 @@ async function generarReporteProyecto(req, res) {
             });
         }
 
-        // 5. Finalizar y enviar el PDF
         doc.end();
 
     } catch (error) {
@@ -66,4 +56,5 @@ async function generarReporteProyecto(req, res) {
 
 module.exports = {
     generarReporteProyecto,
+
 };
