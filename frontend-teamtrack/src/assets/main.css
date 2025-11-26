@@ -1,0 +1,129 @@
+:root {
+  --color-primary: #7b1e3c;
+  --color-primary-dark: #5a152c;
+
+  --color-bg: #1f1f1f;
+  --color-bg-dark: #0f0f0f;
+
+  --color-text: #ffffff;
+  --color-text-soft: #dcdcdc;
+  --color-gray: #b3b3b3;
+
+  --radius: 10px;
+  --transition: 0.25s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Inter", system-ui, sans-serif;
+  line-height: 1.5;
+  overflow-y: scroll;
+}
+
+h1, h2, h3, h4 {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+p {
+  color: var(--color-text-soft);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn {
+  background: var(--color-primary);
+  color: var(--color-text);
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  border: none;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  background: var(--color-primary-dark);
+}
+
+.btn-secondary {
+  background: var(--color-bg-dark);
+  border: 1px solid #333;
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-primary);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-dark);
+}
+
+.card {
+  background: var(--color-bg-dark);
+  padding: 16px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+
+.card:hover {
+  border-color: var(--color-primary);
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  background: #2a2a2a;
+  color: var(--color-text);
+  border: 1px solid #444;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  font-size: 1rem;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+.page {
+  padding: 30px;
+}
+
+.section-title {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
