@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:4000/api'; 
+const API_URL = 'https://team-track-seguimiento-de-proyectos.vercel.app/api'; 
 
 const apiClient = axios.create({
     baseURL: API_URL,
